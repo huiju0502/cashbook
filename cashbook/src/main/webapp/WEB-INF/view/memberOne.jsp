@@ -11,19 +11,19 @@
 	<table border="1">
 		<tr>
 			<td>id</td>
-			<td>${member.memberId}</td>
+			<td>${memberOne.memberId}</td>
 		<tr>
 		<tr>
 			<td>pw</td>
-			<td>${member.memberPw}</td>
+			<td>${memberOne.memberPw}</td>
 		<tr>
 		<tr>
 			<td>updatadate</td>
-			<td>${member.updatedate}</td>
+			<td>${memberOne.updatedate}</td>
 		<tr>
 		<tr>
 			<td>createdate</td>
-			<td>${member.createdate}</td>
+			<td>${memberOne.createdate}</td>
 		<tr>
 	</table>
 	<a href="${pageContext.request.contextPath}/modifyMember">회원정보수정</a>

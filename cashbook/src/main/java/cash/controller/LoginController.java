@@ -19,7 +19,7 @@ public class LoginController extends HttpServlet {
 		// session 인증 검사 코드
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginMember") != null) {
-			response.sendRedirect(request.getContextPath()+"/cashbook");
+			response.sendRedirect(request.getContextPath()+"/calendar");
 		}
 		request.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
 	}
@@ -43,7 +43,7 @@ public class LoginController extends HttpServlet {
 		HttpSession session = request.getSession();
 		System.out.println("로그인 성공");
 		session.setAttribute("loginMember", loginMember);
-		response.sendRedirect(request.getContextPath()+"/cashbook");
+		response.sendRedirect(request.getContextPath()+"/calendar");
 		
 	}
 
