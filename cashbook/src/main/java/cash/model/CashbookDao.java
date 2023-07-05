@@ -139,4 +139,85 @@ public class CashbookDao {
 		return cashbookNo;
 	}
 	
+	// 해시태그별 가계부 출력
+	public List<Cashbook> selectCashbookByTag(
+			String memberId, String word, int beginRow, int rowPerPage) {
+		List<Cashbook> list = new ArrayList<Cashbook>();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT c.cashbook_no, c.category, c.price, c.memo, c.cashbook_date, c.updatedate, c.createdate FROM cashbook c INNER JOIN hashtag h ON c.cashbook_no = h.cashbook_no WHERE c.member_id = ? AND h.word = ? ORDER BY c.cashbook_date DESC LIMIT ?,?";
+		
+		try {
+			Class.forName("org.mariadb.jdbc.Driver");
+			conn = DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3306/cash", "root", "java1234");
+			stmt = conn.prepareStatement(sql);
+			System.out.println(stmt);
+			stmt.setString(1, memberId);
+			stmt.setString(2, word);
+			stmt.setInt(3, beginRow);
+			stmt.setInt(4, rowPerPage);
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				Cashbook c = new Cashbook();
+				c.setCashbookNo(rs.getInt("c.cashbook_no"));
+				c.setCategory(rs.getString("c.category"));
+				c.setPrice(rs.getInt("c.price"));
+				c.setMemo(rs.getString("c.memo"));
+				c.setCashbookDate(rs.getString("c.cashbook_date"));
+				c.setUpdatedate(rs.getString("c.updatedate"));
+				c.setCreatedate(rs.getString("c.createdate"));
+				list.add(c);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				stmt.close();
+				conn.close();
+			} catch(Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return list;
+	}
+	
+	// 해시태그별 가계부 전체 행수
+	public int selectCashbookListCnt(String memberId, String word) {
+		int row = 0;
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT COUNT(*) FROM cashbook c INNER JOIN hashtag h ON c.cashbook_no = h.cashbook_no WHERE c.member_id = ? AND h.word = ?";
+		
+		try {
+			Class.forName("org.mariadb.jdbc.Driver");
+			conn = DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3306/cash", "root", "java1234");
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, memberId);
+			stmt.setString(2, word);
+			System.out.println(stmt);
+			rs = stmt.executeQuery();
+			if(rs.next()) {
+				row = rs.getInt("COUNT(*)");
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				stmt.close();
+				conn.close();
+			} catch(Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return row;
+	}
+	
 }
