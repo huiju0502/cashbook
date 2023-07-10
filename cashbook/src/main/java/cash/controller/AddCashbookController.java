@@ -23,7 +23,6 @@ public class AddCashbookController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//session 유효성검사
 		HttpSession session = request.getSession();
-		
 		if(session.getAttribute("loginMember") == null) {
 			response.sendRedirect(request.getContextPath()+"/login");
 			return;
@@ -39,7 +38,7 @@ public class AddCashbookController extends HttpServlet {
 		request.setAttribute("targetMonth", targetMonth);
 		request.setAttribute("targetDate", targetDate);
 		
-		request.getRequestDispatcher("/WEB-INF/view/addCashbook.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/cashbook.jsp").forward(request, response);
 	}
 	// 입력액션
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -84,7 +83,7 @@ public class AddCashbookController extends HttpServlet {
 		// 입력실패시
 		if(cashbookNo == 0) {
 			System.out.println("입력실패");
-			response.sendRedirect(request.getContextPath()+"/addCashbook?targetYear=" +targetYear + "&targetMonth=" + targetMonth + "&targetDate=" + targetDate);
+			response.sendRedirect(request.getContextPath()+"/cashbook?targetYear=" +targetYear + "&targetMonth=" + targetMonth + "&targetDate=" + targetDate);
 			return;
 		} 
 		// 입력성공시 -> 해시태그 있다면 -> 해시 태그추출 - > 해시태그 입력(반복)

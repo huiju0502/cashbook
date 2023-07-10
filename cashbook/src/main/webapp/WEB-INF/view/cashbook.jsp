@@ -13,7 +13,28 @@
 	<a href="${pageContext.request.contextPath}/memberOne">마이페이지</a>
 	<a href="${pageContext.request.contextPath}/calendar">홈</a>
 	<a href="${pageContext.request.contextPath}/logout">로그아웃</a>
-	<a href="${pageContext.request.contextPath}/addCashbook?targetYear=${targetYear}&targetMonth=${targetMonth}&targetDate=${targetDate}">추가</a>
+	<!-- 추가폼 -->
+		<form action="${pageContext.request.contextPath}/addCashbook?targetYear=${targetYear}&targetMonth=${targetMonth}&targetDate=${targetDate}" method="post">
+			<table border="1">
+				<tr>
+					<td>분류</td>
+					<td>
+						<input type="radio" name="category" value="수입">수입
+						<input type="radio" name="category" value="지출">지출
+					</td>
+				</tr>
+				<tr>
+					<td>금액</td>
+					<td><input type="number" name="price"></td>
+				</tr>
+				<tr>
+					<td>메모</td>
+					<td><input type="text" name="memo"></td>
+				</tr>
+			</table>
+			<button type="submit">추가</button>
+		</form>
+	<!-- 날짜별 리스트 출력 -->
 	<table border="1">
 		<tr>
 			<th>분류</th>
