@@ -22,7 +22,13 @@ public class RemoveMemberController extends HttpServlet {
 	
 	// 탈퇴
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// session 인증 검사
 		HttpSession session = request.getSession();
+		if(session.getAttribute("loginMember") == null) {
+			response.sendRedirect(request.getContextPath()+"/login");
+			return;
+		}
+		
 		Member loginMember = (Member)(session.getAttribute("loginMember"));
 		String memberPw = request.getParameter("memberPw");
 		
