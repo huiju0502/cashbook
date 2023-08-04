@@ -116,6 +116,9 @@
 		</table>
 		<button type="button" id="signinBtn">회원가입</button>
 	</form>
-
+	
+	<div>
+	<jsp:include page="/WEB-INF/inc/copyright.jsp"></jsp:include>
+	</div>
 </body>
 </html>

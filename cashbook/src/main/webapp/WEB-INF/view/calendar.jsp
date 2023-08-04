@@ -10,6 +10,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<!-- 메인메뉴 -->
+	<div>
+		<jsp:include page="/WEB-INF/inc/mainmenu.jsp"></jsp:include>
+	</div>
+	
 	<!-- 변수값 or 반환값 : EL사용 $ 표현식-->
 	<!-- 
 		속성값대신 EL사용
@@ -75,5 +80,9 @@
 		</c:forEach> 
 		</tr>
 	</table>
+	
+	<div>
+	<jsp:include page="/WEB-INF/inc/copyright.jsp"></jsp:include>
+	</div>
 </body>
 </html>

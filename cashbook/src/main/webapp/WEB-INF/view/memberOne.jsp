@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<!-- 메인메뉴 -->
+	<div>
+		<jsp:include page="/WEB-INF/inc/mainmenu.jsp"></jsp:include>
+	</div>
 	<h1>회원 상세정보</h1>
 	<table border="1">
 		<tr>
@@ -26,7 +30,11 @@
 			<td>${memberOne.createdate}</td>
 		<tr>
 	</table>
-	<a href="${pageContext.request.contextPath}/modifyMember">회원정보수정</a>
+	<a href="${pageContext.request.contextPath}/modifyMember">비밀번호 수정</a>
 	<a href="${pageContext.request.contextPath}/removeMember">회원탈퇴</a>
+	
+	<div>
+	<jsp:include page="/WEB-INF/inc/copyright.jsp"></jsp:include>
+	</div>
 </body>
 </html>

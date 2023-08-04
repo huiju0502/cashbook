@@ -27,9 +27,10 @@ public class MemberOneController extends HttpServlet {
 		}
 		Member member = (Member)(session.getAttribute("loginMember"));
 		
-		// 모델값 구하기(DAO 메서드 호출)
+		// 모델 호출(회원의 정보)
 		MemberDao memberDao = new MemberDao();
 		Member memberOne = memberDao.selectMemberOne(member.getMemberId());
+		
 		// member 출력하는(포워딩 대상) memberOne.jsp에도 공유되어야 된다
 		// request가 공유 되니까 request안에 넣어서 공유
 		request.setAttribute("memberOne", memberOne);

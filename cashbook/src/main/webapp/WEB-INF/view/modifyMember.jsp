@@ -84,7 +84,11 @@
 </script>
 </head>
 <body>
-	<h1></h1>
+	<!-- 메인메뉴 -->
+	<div>
+		<jsp:include page="/WEB-INF/inc/mainmenu.jsp"></jsp:include>
+	</div>
+	<h1>비밀번호 수정</h1>
 	<form id="modifyForm" action="${pageContext.request.contextPath}/modifyMember" method="post">
 		<table border="1">
 			<tr>
@@ -111,6 +115,9 @@
 		</table>
 		<button type="submit" id="modifyBtn">수정</button>
 	</form>
-
+	
+	<div>
+	<jsp:include page="/WEB-INF/inc/copyright.jsp"></jsp:include>
+	</div>
 </body>
 </html>

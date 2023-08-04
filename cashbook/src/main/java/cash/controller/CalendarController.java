@@ -23,11 +23,11 @@ public class CalendarController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	// sesiion 인증 검사
 	HttpSession session = request.getSession();
-	
 	if(session.getAttribute("loginMember") == null) {
 		response.sendRedirect(request.getContextPath()+"/login");
 		return;
 	}
+	
 	Member member = (Member)(session.getAttribute("loginMember"));
 		
 	// view에 넘겨줄 달력정보(모델값)
@@ -72,7 +72,8 @@ public class CalendarController extends HttpServlet {
 	List<Map<String,Object>> htList
 		= new HashtagDao().selectWordCountByMonth(member.getMemberId(), targetYear, targetMonth+1);
 	System.out.println(htList.size());
-
+	
+	// 뷰에 값 넘기기(request)
 	request.setAttribute("targetYear", targetYear);
 	request.setAttribute("targetMonth", targetMonth);
 	request.setAttribute("lastDate", lastDate);

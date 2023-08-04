@@ -20,6 +20,7 @@ import cash.vo.Member;
 @WebServlet("/addCashbook")
 public class AddCashbookController extends HttpServlet {
 	// 입력폼 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//session 유효성검사
 		HttpSession session = request.getSession();
@@ -41,12 +42,18 @@ public class AddCashbookController extends HttpServlet {
 		request.getRequestDispatcher("/WEB-INF/view/cashbook.jsp").forward(request, response);
 	}
 	// 입력액션
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// session 인증 검사
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginMember") == null) {
+			response.sendRedirect(request.getContextPath()+"/login");
+			return;
+		}
 		// 인코딩
 		request.setCharacterEncoding("utf-8");
 		// request 매개값
 		// 아이디 : 세션값에서 가져옴
-		HttpSession session = request.getSession();
 		Member member = (Member)(session.getAttribute("loginMember"));
 		String memberId = member.getMemberId();
 		// 분류

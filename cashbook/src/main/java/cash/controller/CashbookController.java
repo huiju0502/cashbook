@@ -16,9 +16,9 @@ import cash.vo.Member;
 
 @WebServlet("/cashbook")
 public class CashbookController extends HttpServlet {
-	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// session 인증 검사 코드
+		// session 인증 검사
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginMember") == null) {
 			response.sendRedirect(request.getContextPath()+"/login");

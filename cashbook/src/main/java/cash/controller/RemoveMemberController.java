@@ -15,12 +15,19 @@ import cash.vo.Member;
 @WebServlet("/removeMember")
 public class RemoveMemberController extends HttpServlet {
 	// 비밀번호 입력폼
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// session 인증 검사
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginMember") == null) {
+			response.sendRedirect(request.getContextPath()+"/login");
+			return;
+		}
 		request.getRequestDispatcher("/WEB-INF/view/removeMember.jsp").forward(request, response);
 	}
 	
 	// 탈퇴
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// session 인증 검사
 		HttpSession session = request.getSession();

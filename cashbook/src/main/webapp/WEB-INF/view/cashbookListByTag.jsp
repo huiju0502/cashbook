@@ -8,6 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<!-- 메인메뉴 -->
+	<div>
+		<jsp:include page="/WEB-INF/inc/mainmenu.jsp"></jsp:include>
+	</div>
+	<!-- 해시태그벌 출력 -->
 	${word}
 	<table border="1">
 		<tr>
@@ -43,5 +48,9 @@
 	<c:if test="${maxPage != lastPage}">
 		<a href="${pageContext.request.contextPath}/cashbookListByTag?word=${word}&currentPage=${minPage+pagePerPage}">다음</a>
 	</c:if>
+	
+	<div>
+	<jsp:include page="/WEB-INF/inc/copyright.jsp"></jsp:include>
+	</div>
 </body>
 </html>

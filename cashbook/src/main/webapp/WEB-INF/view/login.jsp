@@ -23,5 +23,9 @@
 		<button type="submit">로그인</button>
 		<a href="${pageContext.request.contextPath}/addMember">회원가입</a>
 	</form>
+	
+	<div>
+	<jsp:include page="/WEB-INF/inc/copyright.jsp"></jsp:include>
+	</div>
 </body>
 </html>
